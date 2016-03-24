@@ -1,0 +1,12 @@
+bin
+build
+logs
+c/Temp
+.settings/*
+.gradle
+.classpath
+.lastexecutedscript.txt
+.DS_Store
+.pmd
+AutoPilot.jar
+.project

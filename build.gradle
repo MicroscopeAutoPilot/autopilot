@@ -1,0 +1,249 @@
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+
+boolean enableNative = false;
+
+if(enableNative) {
+	
+	apply plugin: 'c'
+	apply plugin: 'cpp'
+	
+	model {
+		platforms {
+			x64 { architecture "x86_64" }
+		}
+
+		repositories {
+			libs(PrebuiltLibraries) {
+				jvm {
+					binaries.withType(SharedLibraryBinary) { sharedLibraryFile = file("./src/cpp/jvmlib/jvm.lib") }
+				}
+			}
+		}
+
+		toolChains {
+			visualCpp(VisualCpp) {
+				// Specify the installDir if Visual Studio cannot be located
+				// installDir "C:/Apps/Microsoft Visual Studio 10.0"
+			}
+		}
+	}
+
+	binaries.all {
+		if (toolChain in VisualCpp) {
+			cppCompiler.args "/EHsc"
+		}
+	}
+
+	libraries {
+		AutoPilot { targetPlatforms "x64" }
+	}
+
+	sources {
+		AutoPilot {
+			cpp {
+				source {
+					srcDirs "src/cpp"
+					include "**/*.cpp"
+				}
+				exportedHeaders {
+					srcDirs "src/cpp","src/cpp/jvmlib"
+					include "**/*.h"
+				}
+			}
+		}
+	}
+
+	executables {
+		Test {
+			targetPlatforms "x64"
+			binaries.all { lib libraries.AutoPilot.shared  }
+		}
+	}
+
+	sources {
+		Test {
+			cpp {
+				source {
+					srcDir "src/cpp/test"
+					include "Test.cpp"
+				}
+				lib library: 'jvm'
+			}
+		}
+	}
+}
+
+
+
+sourceSets {
+	main {
+		java { srcDir 'src/java' }
+		resources {  srcDir 'src/java' }
+	}
+	test {
+		java { srcDir 'src/java' }
+		resources {  srcDir 'src/java' }
+	}
+}
+
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+version = '1.0'
+
+test {
+	testLogging.showStandardStreams = true
+	testLogging { events "passed", "skipped", "failed" }
+
+	exclude '**/demo/**'
+	exclude '**/run/**'
+
+	maxHeapSize = "4G"
+}
+
+dependencies {
+	compile 'org.apache.commons:commons-collections4:4.+'
+	compile 'org.apache.commons:commons-lang3:3.1'
+	compile 'commons-io:commons-io:2.+'
+	compile 'org.apache.commons:commons-math3:3.2'
+	compile 'commons-beanutils:commons-beanutils:1.7.0'
+	compile 'commons-digester:commons-digester:1.8'
+	compile 'commons-logging:commons-logging:1.1.1'
+	compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.1'
+	compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.1'
+
+	compile 'net.sourceforge.csparsej:csparsej:1.1.1'
+	compile 'javassist:javassist:3.0'
+	compile 'jdepend:jdepend:2.9.1'
+	compile 'args4j:args4j:2.0.29'
+
+	compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24'
+	compile 'com.github.rwl:jtransforms:2.4.0'
+	compile 'org.codehaus.groovy:groovy-all:2.2.2'
+	compile 'net.sf.trove4j:trove4j:3.0.3'
+	compile 'java3d:vecmath:1.3.1'
+	compile 'org.jzy3d:jzy3d-api:0.9.1'
+
+	compile group: "net.clearvolume", name: "cleargl", version: "0.9.6", changing: true, transitive: true
+	compile group: "net.rtlib", name: "RTlib-core", version: "(,1.0]", changing: true
+
+	compile group: 'junit', name: 'junit', version: '4.11'
+	testCompile group: 'junit', name: 'junit', version: '4.11'
+
+	compile fileTree(dir: './Libs/jmathplot/jar', include: '*.jar')
+	compile fileTree(dir: './Libs/bioformats/jar', include: '*.jar')
+	compile fileTree(dir: './Libs/jai/jar', include: '*.jar')
+	compile fileTree(dir: './Libs/jwave/jar', include: '*.jar')
+	compile fileTree(dir: './Libs/miglayout/jar', include: '*.jar')
+	compile fileTree(dir: './Libs/rcaller/jar', include: '*.jar')
+	compile fileTree(dir: './Libs/joptimizer/jar', include: '*.jar')
+}
+
+repositories {
+	mavenCentral()
+	maven {url "http://oss.sonatype.org/content/groups/public"}
+	maven {url  "http://dl.bintray.com/rtlib/RTlib" }
+	maven {url  "http://dl.bintray.com/clearvolume/ClearVolume" }
+	maven {url  "http://dl.bintray.com/rtlib/CoreMem" }
+	maven {url "http://maven.jzy3d.org/releases/"}
+	maven {url "http://maven.jzy3d.org/snapshots/"}
+}
+
+
+jar {
+	dependsOn configurations.runtime
+	from {
+		configurations.compile.collect {
+			it.isDirectory() ? it : zipTree(it)
+		}
+	}
+	manifest {
+		attributes("Class-Path": ".")
+		attributes("Main-Class": "autopilot.interfaces.test.AutoPilotCTest")
+	}
+}
+
+//create a single Jar with all dependencies
+task fatJar(type: Jar) {
+	manifest {
+		attributes("Class-Path": ".")
+		attributes("Main-Class": "autopilot.interfaces.test.AutoPilotCTest")
+	}
+	baseName = project.name + '-all'
+	from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+	with jar
+}
+
+
+
+task cmdlinetool(type:Jar) {
+	archiveName = "AutoPilotTool.jar"
+	from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+	with jar
+
+	manifest {
+		attributes("Class-Path": ".", 'Main-Class': 'autopilot.main.AutoPilotToolMain')
+	}
+	exclude('META-INF/*.SF')
+	exclude('META-INF/*.DSA')
+	exclude('META-INF/*.RSA')
+	
+}
+
+task packagenativelib {
+	doLast {
+		def os = System.getProperty("os.name").toLowerCase()
+		if (os.contains("windows"))
+		{
+			copy
+			{
+				from('./build/binaries/autoPilotSharedLibrary/')
+				into('./build/AutoPilot/')
+				include('AutoPilot.dll')
+			}
+
+			copy
+			{
+				from('./src/cpp/')
+				into('./build/AutoPilot/')
+				include('AutoPilot.h')
+			}
+
+			copy
+			{
+				from('./build/binaries/testExecutable/')
+				into('./build/AutoPilot/')
+				include('Test.exe')
+			}
+
+			/*copy
+			 {
+			 from('./build/libs/')
+			 into('./build/AutoPilot/')
+			 include('AutoPilot-???.jar')
+			 rename('AutoPilot-.+.jar','AutoPilot.jar')
+			 }/**/
+		}
+	}
+}
+
+//packagenativelib.dependsOn(autoPilotSharedLibrary)
+//packagenativelib.dependsOn(testExecutable)
+
+
+
+
+
+
+
+
+
+
+
+
+

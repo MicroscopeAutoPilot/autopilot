@@ -1,0 +1,1 @@
+gradle cleanEclipse eclipse build packagenativelib
