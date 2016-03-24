@@ -1,5 +1,6 @@
 bin
 build
+deploy
 logs
 c/Temp
 .settings/*
