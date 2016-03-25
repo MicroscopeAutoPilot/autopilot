@@ -1,5 +1,6 @@
 package autopilot.stackanalysis.generic;
 
+import autopilot.utils.rtlib.core.cpu.AvailableThreads;
 import gnu.trove.list.array.TDoubleArrayList;
 
 import java.io.File;
@@ -31,8 +32,7 @@ public class GenericFocusStackAnalysis
 	private static final double cDefaultLateralPixelSize = 0.406;
 	private static final double cDefaultFitProbabilityThreshold = 0.98;
 
-	protected static final ExecutorService sExecutor = Executors.newFixedThreadPool(Runtime.getRuntime()
-																																													.availableProcessors());
+	protected static final ExecutorService sExecutor = Executors.newFixedThreadPool(AvailableThreads.getNumberOfThreads());
 
 	private final ArrayList<ZPlaneAnalysisTask> mZPlaneAnalysisTask = new ArrayList<>();
 

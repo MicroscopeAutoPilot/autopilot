@@ -4,6 +4,7 @@ import static java.lang.Math.atan;
 import static java.lang.Math.log;
 import static java.lang.Math.toDegrees;
 
+import autopilot.utils.rtlib.core.cpu.AvailableThreads;
 import gnu.trove.list.array.TDoubleArrayList;
 
 import java.util.ArrayList;
@@ -35,8 +36,7 @@ public class Xi2RegPlane2DFit implements Plane2DFitInterface
 
 	public Xi2RegPlane2DFit()
 	{
-		this(Executors.newFixedThreadPool(Runtime.getRuntime()
-													.availableProcessors()));
+		this(Executors.newFixedThreadPool(AvailableThreads.getNumberOfThreads()));
 	}
 
 	public Xi2RegPlane2DFit(ExecutorService pExecutorService)

@@ -3,6 +3,8 @@ package autopilot.utils.rtlib.core.math.argmax.fitprob;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 import static java.lang.Math.sqrt;
+
+import autopilot.utils.rtlib.core.cpu.AvailableThreads;
 import gnu.trove.list.array.TDoubleArrayList;
 
 import java.io.BufferedInputStream;
@@ -14,6 +16,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
@@ -42,9 +45,10 @@ public class FitQualityEstimator
 
 	public FitQualityEstimator()
 	{
-		this(Executors.newFixedThreadPool(Runtime.getRuntime()
-													.availableProcessors()));
+		this(Executors.newFixedThreadPool(AvailableThreads.getNumberOfThreads()));
 	}
+
+
 
 	public FitQualityEstimator(ExecutorService pExecutorService)
 	{

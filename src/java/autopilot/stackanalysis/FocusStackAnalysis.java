@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 
 import autopilot.image.DoubleArrayImage;
 import autopilot.image.readers.TiffReader;
+import autopilot.utils.rtlib.core.cpu.AvailableThreads;
 import cern.colt.Arrays;
 
 public class FocusStackAnalysis
@@ -22,8 +23,7 @@ public class FocusStackAnalysis
 	private static final double cDefaultLateralPixelSize = 0.406;
 	private static final double cDefaultFitProbabilityThreshold = 0.98;
 
-	protected static final ExecutorService sExecutor = Executors.newFixedThreadPool(Runtime.getRuntime()
-																																													.availableProcessors());
+	protected static final ExecutorService sExecutor = Executors.newFixedThreadPool(AvailableThreads.getNumberOfThreads());
 
 	ArrayList<ZPlaneAnalysisTask> mZPlaneAnalysisTask = new ArrayList<>();
 

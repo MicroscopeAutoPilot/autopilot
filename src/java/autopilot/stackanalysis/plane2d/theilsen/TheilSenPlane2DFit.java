@@ -9,6 +9,7 @@ import java.util.concurrent.FutureTask;
 import autopilot.stackanalysis.plane2d.FitResult;
 import autopilot.stackanalysis.plane2d.Plane2DFitInterface;
 import autopilot.stackanalysis.plane2d.Plane2DUtils;
+import autopilot.utils.rtlib.core.cpu.AvailableThreads;
 import gnu.trove.list.array.TDoubleArrayList;
 
 public class TheilSenPlane2DFit implements Plane2DFitInterface
@@ -23,8 +24,7 @@ public class TheilSenPlane2DFit implements Plane2DFitInterface
 
 	public TheilSenPlane2DFit()
 	{
-		this(Executors.newFixedThreadPool(Runtime.getRuntime()
-													.availableProcessors()));
+		this(Executors.newFixedThreadPool(AvailableThreads.getNumberOfThreads()));
 	}
 
 	public TheilSenPlane2DFit(ExecutorService pExecutorService)
