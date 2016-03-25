@@ -2,5 +2,5 @@ language: java
 script: "gradle build"
 jdk:
   - oraclejdk8
-install: gradle build test --refresh-dependencies --stacktrace
+install: gradle build -x test --refresh-dependencies --stacktrace
 
