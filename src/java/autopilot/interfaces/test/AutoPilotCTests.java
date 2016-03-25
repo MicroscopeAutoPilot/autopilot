@@ -4,15 +4,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.DoubleBuffer;
 
 import org.junit.Test;
 
-import rtlib.core.units.Magnitude;
-import autopilot.image.DoubleArrayImage;
-import autopilot.image.readers.TiffReader;
+import autopilot.utils.rtlib.core.units.Magnitude;
 import autopilot.interfaces.AutoPilotC;
 import cern.colt.Arrays;
 

@@ -7,7 +7,7 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;
 import java.util.logging.Logger;
 
-import rtlib.core.math.argmax.SmartArgMaxFinder;
+import autopilot.utils.rtlib.core.math.argmax.SmartArgMaxFinder;
 
 public class DeltaZTask implements Callable<Double>
 {

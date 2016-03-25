@@ -4,20 +4,16 @@ import static java.lang.Math.abs;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.ref.Reference;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.atomic.AtomicLong;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Logger;
 
-import org.apache.commons.lang3.tuple.MutablePair;
-import org.apache.commons.lang3.tuple.Pair;
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
 
-import rtlib.core.log.CompactFormatter;
-import rtlib.core.log.gui.LogWindowHandler;
+import autopilot.utils.rtlib.core.log.CompactFormatter;
+import autopilot.utils.rtlib.core.log.gui.LogWindowHandler;
 import autopilot.image.DoubleArrayImage;
 import autopilot.image.readers.TiffReader;
 import autopilot.image.readers.TiffReader.TiffStackCallBack;

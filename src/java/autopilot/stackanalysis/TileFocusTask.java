@@ -5,7 +5,7 @@ import gnu.trove.list.array.TDoubleArrayList;
 
 import java.util.concurrent.Callable;
 
-import rtlib.core.math.argmax.SmartArgMaxFinder;
+import autopilot.utils.rtlib.core.math.argmax.SmartArgMaxFinder;
 
 public class TileFocusTask implements Callable<Double>
 {

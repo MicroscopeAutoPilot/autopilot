@@ -47,7 +47,7 @@ public class SimpleSvgGeneratorTests
 			assertTrue(lTempFile.exists());
 		} catch (java.awt.HeadlessException e)
 		{
-			
+
 		}
 
 	}

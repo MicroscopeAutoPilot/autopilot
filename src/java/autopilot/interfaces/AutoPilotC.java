@@ -3,7 +3,7 @@ package autopilot.interfaces;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 
-import rtlib.core.math.argmax.SmartArgMaxFinder;
+import autopilot.utils.rtlib.core.math.argmax.SmartArgMaxFinder;
 import autopilot.fmatrix.constraingraph.templates.ConstrainGraph2D2I;
 import autopilot.fmatrix.constraingraph.templates.ConstrainGraphExtraDOF;
 import autopilot.fmatrix.solvers.SolverInterface;

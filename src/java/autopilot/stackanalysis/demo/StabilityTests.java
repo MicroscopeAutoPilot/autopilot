@@ -15,7 +15,7 @@ import org.apache.commons.math3.stat.StatUtils;
 import org.junit.Before;
 import org.junit.Test;
 
-import rtlib.core.log.gui.LogWindowHandler;
+import autopilot.utils.rtlib.core.log.gui.LogWindowHandler;
 import autopilot.stackanalysis.FocusStackAnalysis;
 import gnu.trove.list.array.TDoubleArrayList;
 

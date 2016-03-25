@@ -5,8 +5,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Logger;
 
-import rtlib.core.log.CompactFormatter;
-import rtlib.core.log.gui.LogWindowHandler;
+import autopilot.utils.rtlib.core.log.CompactFormatter;
+import autopilot.utils.rtlib.core.log.gui.LogWindowHandler;
 import autopilot.image.DoubleArrayImage;
 import autopilot.stackanalysis.FocusStackAnalysis;
 
