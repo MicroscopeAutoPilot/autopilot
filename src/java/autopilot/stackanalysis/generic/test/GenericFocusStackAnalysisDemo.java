@@ -38,7 +38,7 @@ public class GenericFocusStackAnalysisDemo
 				System.out.println(lZPlaneAnalysisResult.mVList);
 			}
 
-			final File lSVGFile = new File("/Users/royer/Projects/AutoPilot/datasets/bock/test.svg");
+			final File lSVGFile = new File("/Users/royer/Projects/AutoPilot/datasets/bock/demo.svg");
 			lAnalyse.getTileFocusSVG(lSVGFile, 0.5);
 
 			final double[] lFocusCurve = lAnalyse.getFocusCurve();

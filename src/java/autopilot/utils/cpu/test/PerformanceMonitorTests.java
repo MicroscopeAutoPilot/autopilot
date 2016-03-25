@@ -7,14 +7,14 @@ import org.junit.Test;
 public class PerformanceMonitorTests
 {
 
-	@Test
-	public void test() throws InterruptedException
+	/*@Test
+	public void demo() throws InterruptedException
 	{
 		final int lAvailableProcessors = Runtime.getRuntime()
 																						.availableProcessors();
 		System.out.println("lAvailableProcessors=" + lAvailableProcessors);
 
-		for (int i = 0; i < 100000000; i++)
+		for (int i = 0; i < 100; i++)
 		{
 			final double lSystemLoadAverage = ManagementFactory.getOperatingSystemMXBean()
 																													.getSystemLoadAverage() / lAvailableProcessors;
@@ -32,5 +32,5 @@ public class PerformanceMonitorTests
 		{
 			System.out.println("'");
 		}
-	}
+	}/**/
 }

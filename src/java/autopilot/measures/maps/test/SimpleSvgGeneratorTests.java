@@ -26,7 +26,7 @@ public class SimpleSvgGeneratorTests
 
 		final DoubleArrayImage lDoubleArrayImage = new DoubleArrayImage(256,
 																																		256);
-		lSimpleSVGGenerator.addPngImage("test.png",
+		lSimpleSVGGenerator.addPngImage("demo.png",
 																		lDoubleArrayImage,
 																		0,
 																		0,

@@ -11,3 +11,7 @@ c/Temp
 .pmd
 AutoPilot.jar
 .project
+out
+AutoPilot.iml
+AutoPilot.ipr
+AutoPilot.iws

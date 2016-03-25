@@ -1,4 +1,4 @@
-package autopilot.stackanalysis.test;
+package autopilot.stackanalysis.demo;
 
 import static java.lang.Math.abs;
 import static org.junit.Assert.assertEquals;
@@ -9,7 +9,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
-import java.util.logging.ConsoleHandler;
 import java.util.logging.Logger;
 
 import org.junit.Before;
@@ -18,13 +17,11 @@ import org.junit.Test;
 import autopilot.image.DoubleArrayImage;
 import autopilot.image.readers.TiffReader;
 import autopilot.stackanalysis.FocusStackAnalysis;
-import rtlib.core.log.CompactFormatter;
-import rtlib.core.log.gui.LogWindowHandler;
 
-public class FocusStackAnalysisTests
+public class FocusStackAnalysisDemo
 {
 
-	static final boolean cVisualize = true;
+	static final boolean cVisualize = false;
 
 	@Before
 	public void setUp()
@@ -510,13 +507,13 @@ public class FocusStackAnalysisTests
 		final String lFileName = "./stacks/TP=1171_Zi=0_LS=1.tif";
 		final int lWaitTimeInSeconds = 100;
 
-		final int lNumberOfPlanes = TiffReader.nbpages(FocusStackAnalysisTests.class.getResourceAsStream(lFileName));
+		final int lNumberOfPlanes = TiffReader.nbpages(FocusStackAnalysisDemo.class.getResourceAsStream(lFileName));
 		System.out.println("Number of planes in stack: " + lNumberOfPlanes);
 
 		final DoubleArrayImage[] lDoubleArrayImages = new DoubleArrayImage[lNumberOfPlanes];
 		for (int i = 0; i < lNumberOfPlanes; i++)
 		{
-			lDoubleArrayImages[i] = TiffReader.read(FocusStackAnalysisTests.class.getResourceAsStream(lFileName),
+			lDoubleArrayImages[i] = TiffReader.read(FocusStackAnalysisDemo.class.getResourceAsStream(lFileName),
 													i,
 													null);
 		}
@@ -637,7 +634,7 @@ public class FocusStackAnalysisTests
 		}
 
 		lFocusStackAnalysis.loadPlanes(	lDefocusZInMicrons,
-										FocusStackAnalysisTests.class,
+										FocusStackAnalysisDemo.class,
 										lFileName);
 
 		final Double lDeltaZ = lFocusStackAnalysis.getDeltaZ(pWaitTimeInSeconds);
@@ -655,5 +652,6 @@ public class FocusStackAnalysisTests
 		return new Double[]
 		{ lDeltaZ, lAlpha, lBeta };
 	}
+
 
 }

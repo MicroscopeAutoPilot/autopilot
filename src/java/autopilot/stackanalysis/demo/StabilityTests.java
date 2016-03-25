@@ -1,4 +1,4 @@
-package autopilot.stackanalysis.test;
+package autopilot.stackanalysis.demo;
 
 import static java.lang.Math.abs;
 import static java.lang.Math.sqrt;
@@ -8,7 +8,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Logger;
 
@@ -17,8 +16,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import rtlib.core.log.gui.LogWindowHandler;
-import autopilot.image.DoubleArrayImage;
-import autopilot.image.readers.TiffReader;
 import autopilot.stackanalysis.FocusStackAnalysis;
 import gnu.trove.list.array.TDoubleArrayList;
 

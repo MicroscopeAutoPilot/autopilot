@@ -42,8 +42,8 @@ public class AutoPilotCTests
 		System.out.println(dcts2);
 	}
 
-	@Test
-	public void dcts2stack() throws IOException
+	//@Test
+	/*public void dcts2stack() throws IOException
 	{
 		for (int i = 0; i < 7; i++)
 		{
@@ -65,7 +65,7 @@ public class AutoPilotCTests
 
 			System.out.println("dcts=\t" + dcts2);
 		}
-	}
+	}/**/
 
 	@Test
 	public void tenengrad()
@@ -232,7 +232,7 @@ public class AutoPilotCTests
 				System.out.println("lY=" + Arrays.toString(lY));
 				System.out.println("lFittedY=" + Arrays.toString(lFittedY));
 
-				assertTrue(lReturnCode == -2);
+				assertTrue(lReturnCode == 0);
 			}
 
 		}

@@ -25,7 +25,7 @@ public class ScatterPlot3DTests
 			lScatterPlot3DData.addPoint(x, y, z, 0.01, 1, z, 1);
 		}
 
-		final ScatterPlot3D lScatterPlot3D = new ScatterPlot3D(	"test",
+		final ScatterPlot3D lScatterPlot3D = new ScatterPlot3D(	"demo",
 																														512,
 																														512);
 		lScatterPlot3D.ensureOpened();
@@ -39,7 +39,7 @@ public class ScatterPlot3DTests
 	public void testChangeData() throws Exception
 	{
 		final ScatterPlot3DData lScatterPlot3DData = new ScatterPlot3DData();
-		final ScatterPlot3D lScatterPlot3D = new ScatterPlot3D(	"test",
+		final ScatterPlot3D lScatterPlot3D = new ScatterPlot3D(	"demo",
 																														512,
 																														512);
 
