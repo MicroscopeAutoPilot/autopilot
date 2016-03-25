@@ -1,6 +1,6 @@
 language: java
-script: "gradle build"
+script: "./gradlew build -x test"
 jdk:
   - oraclejdk8
-install: gradle build -x test --refresh-dependencies --stacktrace
+install: true
 
