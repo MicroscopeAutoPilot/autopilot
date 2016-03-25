@@ -1,10 +1,12 @@
 package autopilot.utils.R;
 
+import com.github.rcaller.rStuff.RCaller;
+import com.github.rcaller.rStuff.RCode;
+
 import java.io.File;
 import java.io.IOException;
 
-import rcaller.RCaller;
-import rcaller.RCode;
+
 
 /**
  */
@@ -78,7 +80,7 @@ public class R
 	public void run()
 	{
 		mRCaller.setRCode(mRcode);
-		mRCaller.redirectROutputToConsole();
+		//mRCaller.redirectROutputToConsole();
 		mRCaller.runOnly();
 
 	}

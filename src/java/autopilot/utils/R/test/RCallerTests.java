@@ -3,10 +3,11 @@ package autopilot.utils.R.test;
 import java.io.File;
 import java.io.IOException;
 
+import com.github.rcaller.rStuff.RCaller;
+import com.github.rcaller.rStuff.RCode;
 import org.junit.Test;
 
-import rcaller.RCaller;
-import rcaller.RCode;
+
 import autopilot.utils.R.R;
 
 /**
